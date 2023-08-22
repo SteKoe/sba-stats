@@ -59,5 +59,5 @@ export async function getAllIssues(): Promise<Issue[]> {
         hasNextPage = nextIssues.data.repository.issues.pageInfo.hasNextPage;
     }
 
-    return edges.map(e => e.node).filter(e => e);
+    return edges.map((e: any) => e.node).filter((e: any) => e);
 }

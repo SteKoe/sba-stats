@@ -62,5 +62,5 @@ export async function getAllPrs(): Promise<PullRequest[]> {
         hasNextPage = nextIssues.data.repository.pullRequests.pageInfo.hasNextPage;
     }
 
-    return edges.map(e => e.node).filter(e => e);
+    return edges.map((e: any) => e.node).filter((e: any) => e);
 }

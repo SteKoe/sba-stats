@@ -53,13 +53,13 @@ export function ClosedIssuesByYearGraph({ issues, prs } : Props) {
             },
             {
                 label: 'PRs closed (users)',
-                data: Object.keys(groupedPullRequestsWithoutBots).map((key) => groupedPullRequestsWithoutBots[key].filter(p => !bots.includes(p.author?.login)).length),
+                data: Object.keys(groupedPullRequestsWithoutBots).map((key) => groupedPullRequestsWithoutBots[key].filter(p => !bots.includes((p as PullRequest).author?.login)).length),
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
             },
             {
                 label: 'PRs closed (bots)',
                 data: Object.keys(groupedPullRequestsWithoutBots).map((key) => {
-                    return groupedPullRequestsWithoutBots[key].filter(p => bots.includes(p.author?.login)).length;
+                    return groupedPullRequestsWithoutBots[key].filter(p => bots.includes((p as PullRequest).author?.login)).length;
                 }),
                 backgroundColor: 'rgba(147,235,53,0.5)',
             }
@@ -69,7 +69,7 @@ export function ClosedIssuesByYearGraph({ issues, prs } : Props) {
     return <Bar options={options} data={data} />;
 }
 
-function grouByFullYear(items: Issue[] | PullRequest[]) {
+function grouByFullYear(items: (Issue | PullRequest)[]) : { [key: string]: Issue[] | PullRequest[] } {
     return items.reduce((grouped, product) => {
         let group = new Date(product.closedAt).getFullYear();
         if(!grouped[group]) {
@@ -79,5 +79,5 @@ function grouByFullYear(items: Issue[] | PullRequest[]) {
         grouped[group].push(product);
 
         return grouped;
-    }, {} as { [key: string]: Issue[] | PullRequest[] })
+    }, {} as { [key: string]: (Issue | PullRequest)[] })
 }
