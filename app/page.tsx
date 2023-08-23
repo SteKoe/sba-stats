@@ -4,6 +4,7 @@ import {getAllPrs} from "@/utils/prs";
 import {getAllStars} from "@/utils/stars";
 import {SumGraph} from "@/components/SumGraph";
 import {getAllForks} from "@/utils/forks";
+import {IssuesStats} from "@/components/IssuesStats";
 
 export default async function Home() {
     const issues = await getAllIssues()
@@ -19,6 +20,10 @@ export default async function Home() {
                     issues={issues.filter(i => i.closed)}
                     stars={stars}
                     prs={prs.filter(i => i.closed)}/>
+            </div>
+            <div className="border rounded-xl shadow-xl bg-white m-2 p-4">
+                <h3 className="text-center">Issue stats</h3>
+                <IssuesStats issues={issues}/>
             </div>
             <div className="border rounded-xl shadow-xl bg-white m-2 p-4">
                 <h3 className="text-center">Stargazers</h3>
