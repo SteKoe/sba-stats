@@ -4,6 +4,7 @@ import React from 'react';
 import {
     BarController,
     BarElement,
+    LineController,
     CategoryScale,
     Chart as ChartJS,
     Legend,
@@ -16,8 +17,7 @@ import {Chart} from 'react-chartjs-2';
 import {Issue, PullRequest, Star} from "@/global";
 import {groupByFullYear} from "@/utils/math";
 
-ChartJS.register(
-    CategoryScale,
+ChartJS.register(    CategoryScale,
     LinearScale,
     BarElement,
     BarController,
