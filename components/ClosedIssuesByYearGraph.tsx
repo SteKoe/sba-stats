@@ -1,32 +1,12 @@
 'use client';
 
 import React from 'react';
-import {
-    BarController,
-    BarElement,
-    LineController,
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale, LineElement,
-    PointElement,
-    Title,
-    Tooltip,
-} from 'chart.js';
+import {Chart as ChartJS, registerables,} from 'chart.js';
 import {Chart} from 'react-chartjs-2';
 import {Issue, PullRequest, Star} from "@/global";
 import {groupByFullYear} from "@/utils/math";
 
-ChartJS.register(    CategoryScale,
-    LinearScale,
-    BarElement,
-    BarController,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
+ChartJS.register(...registerables);
 
 export const options = {
     responsive: true,
